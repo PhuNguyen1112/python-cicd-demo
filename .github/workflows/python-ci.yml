@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI/CD
 
 on:
   push:
@@ -24,3 +24,18 @@ jobs:
 
       - name: Run tests with pytest
         run: pytest
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Simulate deploy (local)
+        run: |
+          echo "🎯 CI hoàn tất. Bạn cần chạy lệnh sau trên máy local để deploy:"
+          echo ""
+          echo "cd 'C:/Users/ProTech247/Downloads/New folder'"
+          echo "python main.py"
+          echo ""
+          echo "🚀 Đã sẵn sàng chạy ứng dụng!"
